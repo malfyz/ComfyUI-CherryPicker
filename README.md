@@ -33,9 +33,8 @@ license = { file = "LICENSE" }
 dependencies = []
 
 [project.urls]
-Repository = "https://github.com/YourUsername/ComfyUI-CherryPicker"
+Repository = "https://github.com/malfyz/ComfyUI-CherryPicker.git"
 
 [tool.comfy]
 PublisherId = "your-publisher-id" # Get this from registry.comfy.org
 DisplayName = "🍒 Cherry Picker"
-Icon = "https://raw.githubusercontent.com/YourUsername/ComfyUI-CherryPicker/main/icon.png"
