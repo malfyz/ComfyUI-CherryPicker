@@ -11,4 +11,4 @@ In standard ComfyUI, saving an image usually requires "Queueing" the whole promp
 1. **Via ComfyUI-Manager (Recommended):** Search for `Cherry Picker` and click install.
 2. **Manual:** Clone this repo into your `custom_nodes` folder:
    ```bash
-   git clone [https://github.com/YourUsername/ComfyUI-CherryPicker.git](https://github.com/YourUsername/ComfyUI-CherryPicker.git)
+   git clone https://github.com/malfyz/ComfyUI-CherryPicker.git
