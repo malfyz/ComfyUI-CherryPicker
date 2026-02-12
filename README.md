@@ -12,3 +12,14 @@ In standard ComfyUI, saving an image usually requires "Queueing" the whole promp
 2. **Manual:** Clone this repo into your `custom_nodes` folder:
    ```bash
    git clone https://github.com/malfyz/ComfyUI-CherryPicker.git
+
+⚙️ How to Use
+* images: Connect any image output (Base, Detailer, or Final).
+* save_path: The full path to your "Keepers" folder (e.g., D:/Uffie_Project/Keepers).
+* filename_prefix: The name to start your files with (e.g., Uffie_Shot).
+* The Button: Once an image is displayed in the preview, click "Save Image Now" to commit it to disk.
+
+🌟 Features
+* Zero Reruns: Saves the current state of the node instantly.
+* Seed Independent: Keep your samplers on 'Randomize' and only save the "Golden Shots."
+* Custom Directories: Easily organize different "shoots" into different folders.
