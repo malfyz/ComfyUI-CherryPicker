@@ -1,0 +1,18 @@
+name: Publish to Comfy Registry
+
+on:
+  push:
+    branches:
+      - main  # This triggers every time you push to your main branch
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Publish to Comfy Registry
+        uses: Comfy-Org/publish-node-action@v1
+        with:
+          registry_access_token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
