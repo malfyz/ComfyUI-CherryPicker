@@ -1,15 +1,15 @@
 [project]
 name = "comfyui-cherrypicker"
 description = "A custom node for ComfyUI that allows users to easily select and save specific images from a batch by index."
-version = "0.1.0"
+version = "0.1.1" # Bumped version to 0.1.1 to ensure a fresh publish
 authors = [
   { name = "malfyz", email = "200437062+malfyz@users.noreply.github.com" }
 ]
-# No external dependencies found in your repo
+license = { text = "MIT License" } # Added this to fix the license warning
 dependencies = []
 
 [project.urls]
-Repository = "https://github.com"
+Repository = "https://github.com/malfyz/ComfyUI-CherryPicker.git"
 
 [tool.comfy]
 publisher_id = "malfyz"
