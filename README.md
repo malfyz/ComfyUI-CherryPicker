@@ -23,18 +23,3 @@ In standard ComfyUI, saving an image usually requires "Queueing" the whole promp
 * Zero Reruns: Saves the current state of the node instantly.
 * Seed Independent: Keep your samplers on 'Randomize' and only save the "Golden Shots."
 * Custom Directories: Easily organize different "shoots" into different folders.
-
-```toml
-[project]
-name = "comfyui-cherrypicker"
-description = "A manual image saving node for high-speed cherry-picking without re-executing the graph."
-version = "1.0.0"
-license = { file = "LICENSE" }
-dependencies = []
-
-[project.urls]
-Repository = "https://github.com/malfyz/ComfyUI-CherryPicker.git"
-
-[tool.comfy]
-PublisherId = "your-publisher-id" # Get this from registry.comfy.org
-DisplayName = "🍒 Cherry Picker"
