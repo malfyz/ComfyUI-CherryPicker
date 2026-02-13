@@ -12,5 +12,6 @@ dependencies = []
 Repository = "https://github.com/malfyz/ComfyUI-CherryPicker.git"
 
 [tool.comfy]
-publisher_id = "malfyz"
-project_id = "cherry-picker"
+PublisherId = "malfyz"
+DisplayName = "ComfyUI CherryPicker"
+ProjectIdentifier = "cherry-picker"
