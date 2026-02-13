@@ -1,0 +1,16 @@
+[project]
+name = "comfyui-cherrypicker"
+description = "A custom node for ComfyUI that allows users to easily select and save specific images from a batch by index."
+version = "0.1.0"
+authors = [
+  { name = "malfyz", email = "200437062+malfyz@users.noreply.github.com" }
+]
+# No external dependencies found in your repo
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com"
+
+[tool.comfy]
+publisher_id = "malfyz"
+project_id = "cherry-picker"
