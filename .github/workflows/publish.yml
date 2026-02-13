@@ -3,7 +3,7 @@ name: Publish to Comfy Registry
 on:
   push:
     branches:
-      - main  # This triggers every time you push to your main branch
+      - main
 
 jobs:
   publish:
@@ -15,4 +15,5 @@ jobs:
       - name: Publish to Comfy Registry
         uses: Comfy-Org/publish-node-action@v1
         with:
-          registry_access_token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
+          # Change this line specifically:
+          personal_access_token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
