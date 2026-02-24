@@ -18,6 +18,7 @@ In standard ComfyUI, saving an image usually requires "Queueing" the whole promp
 * save_path: The full path to your "Keepers" folder (e.g., D:/Uffie_Project/Keepers).
 * filename_prefix: The name to start your files with (e.g., Uffie_Shot).
 * The Button: Once an image is displayed in the preview, click "Save Image Now" to commit it to disk.
+* There is an autosave toggle so the node can operate as a normal 'Save Image' node as needed.
 
 🌟 Features
 * Zero Reruns: Saves the current state of the node instantly.
