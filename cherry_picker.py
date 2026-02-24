@@ -145,24 +145,32 @@ async def save_cherry_pick(request):
         node_id = str(json_data.get("node_id"))
         workflow_run_id = json_data.get("workflow_run_id")
 
-        if not workflow_run_id:
+        # Primary key: workflow + node id (new behavior)
+        cache_key = f"{workflow_run_id}_{node_id}" if workflow_run_id else None
+        data = None
+
+        # 1) Try exact workflow+node match first
+        if cache_key and cache_key in CHERRY_CACHE:
+            data = CHERRY_CACHE[cache_key]
+        else:
+            # 2) Fallback: use the most recent cache entry for this node id,
+            # regardless of workflow id. This restores the older behavior where
+            # the last run for a node could still be saved even if the
+            # workflow ID wasn't tracked correctly on the frontend.
+            matching_keys = [k for k in CHERRY_CACHE.keys() if k.endswith(f"_{node_id}")]
+            if matching_keys:
+                # dicts preserve insertion order; last is most recent
+                last_key = matching_keys[-1]
+                data = CHERRY_CACHE[last_key]
+
+        if data is None:
             return web.json_response(
                 {
                     "status": "error",
-                    "message": "Workflow run ID missing. Run the workflow first, then save.",
+                    "message": "No cached images found for this node. Run the workflow first, then save.",
                 }
             )
 
-        cache_key = f"{workflow_run_id}_{node_id}"
-        if cache_key not in CHERRY_CACHE:
-            return web.json_response(
-                {
-                    "status": "error",
-                    "message": f"Cache miss for this workflow run. Run the workflow first!",
-                }
-            )
-
-        data = CHERRY_CACHE[cache_key]
         save_images_to_output(
             data["images"],
             data["prefix"],

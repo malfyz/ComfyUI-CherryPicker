@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-cherrypicker"
 description = "A custom node for ComfyUI that allows users to easily select and save specific images from a batch by index."
-version = "0.1.2" # Bumped version to 0.1.2 to ensure a fresh publish
+version = "0.1.3" # Fixed a core functionality for the save button
 authors = [
   { name = "malfyz", email = "200437062+malfyz@users.noreply.github.com" }
 ]
