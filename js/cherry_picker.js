@@ -1,6 +1,10 @@
 import { app } from "../../scripts/app.js";
 import { api } from "../../scripts/api.js";
 
+function getWorkflowRunId(node) {
+    return node._cherryPickerWorkflowRunId ?? node.output?.ui?.workflow_run_id ?? null;
+}
+
 app.registerExtension({
     name: "Comfy.CherryPicker",
     async beforeRegisterNodeDef(nodeType, nodeData) {
@@ -14,11 +18,14 @@ app.registerExtension({
                     const oldLabel = btn.name;
                     btn.name = "⏳ SAVING...";
 
-                    // ComfyUI's api.fetchApi may resolve with parsed JSON, not a Response
+                    const workflowRunId = getWorkflowRunId(this);
                     const promise = api.fetchApi("/cherrypicker/save", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ node_id: this.id }),
+                        body: JSON.stringify({
+                            node_id: this.id,
+                            workflow_run_id: workflowRunId,
+                        }),
                     });
                     const getData = (result) => {
                         if (result && typeof result.json === "function") {
@@ -52,4 +59,17 @@ app.registerExtension({
             };
         }
     },
+});
+
+// When our node finishes executing, store workflow_run_id so Save uses the right cache entry
+api.addEventListener("executed", (event) => {
+    const detail = event?.detail ?? event;
+    const nodeId = detail?.node;
+    const output = detail?.output;
+    const workflowRunId = output?.ui?.workflow_run_id;
+    if (workflowRunId == null || nodeId == null) return;
+    const node = app.graph?.getNodeById?.(nodeId);
+    if (node?.type === "CherryPicker") {
+        node._cherryPickerWorkflowRunId = workflowRunId;
+    }
 });
